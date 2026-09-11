@@ -344,6 +344,15 @@
     });
   }
 
+  // Exit / Close button on cookie bar
+  const cookieClose = document.getElementById("cookieClose");
+  if (cookieClose) {
+    cookieClose.addEventListener("click", () => {
+      // Just dismiss for this session (do not set accepted flag)
+      cookieBar.hidden = true;
+    });
+  }
+
   // ---------- PVC Service Link ----------
   // Placeholder URL — replace with the real live URL when ready
   const pvcLink = document.getElementById("pvc-service");
