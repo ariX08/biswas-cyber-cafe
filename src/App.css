@@ -79,16 +79,16 @@
   min-width: 0;
 }
 .glass-logo-img {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  object-fit: cover;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  object-fit: contain;
 }
 .glass-logo-fallback {
   display: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   background: linear-gradient(135deg, var(--orange), var(--orange-deep));
   color: #fff;
   font-weight: 800;
@@ -99,16 +99,7 @@
   display: grid;
 }
 .glass-brand {
-  font-weight: 650;
-  font-size: 0.92rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: var(--text);
-  max-width: 160px;
-}
-[data-theme="dark"] .glass-brand {
-  color: #f5f5f7;
+  display: none !important;
 }
 
 .glass-links {
@@ -181,18 +172,34 @@
   .glass-links { display: flex; }
   .glass-cta { display: inline-flex; }
   .menu-toggle { display: none; }
-  .glass-brand { max-width: 220px; }
 }
 
-.hero {
+/* Continuous hero through TextLoop — no dark partition */
+.hero-zone {
   position: relative;
-  min-height: 78vh;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 88vh;
+  background: transparent;
+}
+.hero-zone .hero {
+  flex: 1;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: transparent;
+  position: relative;
   overflow: hidden;
   isolation: isolate;
-  background: transparent;
+}
+.hero-zone .marquee-section {
+  margin-top: auto;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  padding: 0.5rem 0 1rem;
 }
 
 :root {
@@ -205,7 +212,7 @@
   --muted: #5C5C6E;
   --border: rgba(26,26,46,0.08);
   --radius: 18px;
-  --font: 'Inter', system-ui, sans-serif;
+  --font: 'Inter', 'Noto Sans Bengali', system-ui, sans-serif;
   --font-bn: 'Noto Sans Bengali', 'Inter', system-ui, sans-serif;
 }
 [data-theme="dark"] {
@@ -218,14 +225,19 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: var(--font);
+  font-family: 'Inter', 'Noto Sans Bengali', system-ui, sans-serif;
   background: transparent;
   color: var(--text);
   line-height: 1.5;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
-.lang-bn, .lang-bn body { font-family: var(--font-bn); }
+button, input, a, h1, h2, h3, h4, p, span, li {
+  font-family: 'Inter', 'Noto Sans Bengali', system-ui, sans-serif;
+}
+.lang-bn, .lang-bn body {
+  font-family: 'Noto Sans Bengali', 'Inter', system-ui, sans-serif;
+}
 .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
 .lang-switcher {
@@ -284,14 +296,7 @@ body {
 }
 
 .marquee-section {
-  background: rgba(26, 26, 46, 0.72) !important;
-  backdrop-filter: blur(12px);
   padding: 0.35rem 0;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-[data-theme="dark"] .marquee-section {
-  background: rgba(10, 10, 16, 0.75) !important;
 }
 
 .section {
@@ -390,3 +395,65 @@ a.service-card:hover { transform: translateY(-4px); border-color: var(--orange);
 }
 .footer .made { margin-top: 8px; font-size: 0.85rem; }
 .footer a { color: var(--orange); font-weight: 600; text-decoration: none; }
+
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.footer-legal a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.footer-legal a:hover {
+  color: var(--orange);
+}
+
+.legal-page {
+  padding: 64px 0 80px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  scroll-margin-top: 80px;
+}
+.legal-inner {
+  max-width: 720px;
+}
+.legal-inner h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.legal-updated {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+.legal-inner h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 24px 0 8px;
+}
+.legal-inner p, .legal-inner li {
+  color: var(--muted);
+  margin-bottom: 12px;
+  line-height: 1.65;
+}
+.legal-inner ul {
+  padding-left: 1.25rem;
+  margin-bottom: 12px;
+}
+.legal-inner a {
+  color: var(--orange);
+}
+.legal-back {
+  display: inline-block;
+  margin-top: 24px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--orange) !important;
+}
