@@ -49,8 +49,8 @@
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  max-width: 920px;
-  padding: 10px 14px 10px 16px;
+  max-width: 960px;
+  padding: 10px 16px 10px 14px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.18);
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -78,16 +78,27 @@
   flex-shrink: 0;
   min-width: 0;
 }
+
+/* Full wordmark logo — larger so it reads clearly */
 .glass-logo-img {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  height: 42px;
+  width: auto;
+  max-width: 180px;
+  border-radius: 8px;
   object-fit: contain;
+  display: block;
 }
+@media (min-width: 768px) {
+  .glass-logo-img {
+    height: 48px;
+    max-width: 220px;
+  }
+}
+
 .glass-logo-fallback {
   display: none;
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
   border-radius: 10px;
   background: linear-gradient(135deg, var(--orange), var(--orange-deep));
   color: #fff;
@@ -155,7 +166,7 @@
 .glass-mobile {
   margin-top: 10px;
   width: 100%;
-  max-width: 920px;
+  max-width: 960px;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -174,25 +185,28 @@
   .menu-toggle { display: none; }
 }
 
-/* Continuous hero through TextLoop — no dark partition */
+/* Continuous hero — text lower + larger */
 .hero-zone {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  min-height: 88vh;
+  min-height: 92vh;
   background: transparent;
+  padding-top: 0.5rem;
 }
 .hero-zone .hero {
   flex: 1;
   min-height: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background: transparent;
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  padding-top: 5rem;
+  padding-bottom: 2rem;
 }
 .hero-zone .marquee-section {
   margin-top: auto;
@@ -265,19 +279,29 @@ button, input, a, h1, h2, h3, h4, p, span, li {
 
 .hero-content {
   position: relative; z-index: 2; text-align: center;
-  padding: 3rem 1.5rem; max-width: 720px;
+  padding: 2.5rem 1.5rem 2rem;
+  max-width: 780px;
 }
 .eyebrow {
-  text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem;
-  font-weight: 700; color: rgba(255,255,255,0.9); margin-bottom: 12px;
+  text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.85rem;
+  font-weight: 700; color: rgba(255,255,255,0.9); margin-bottom: 16px;
 }
 .hero h1 {
-  font-size: clamp(2rem, 5.5vw, 3.4rem); font-weight: 800;
-  line-height: 1.12; color: #fff; text-shadow: 0 2px 24px rgba(0,0,0,0.35);
-  margin-bottom: 16px;
+  font-size: clamp(2.4rem, 6.5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+  margin-bottom: 18px;
 }
 .hero-desc {
-  font-size: 1.1rem; color: rgba(255,255,255,0.92); margin-bottom: 28px;
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 32px;
+  max-width: 34em;
+  margin-left: auto;
+  margin-right: auto;
 }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 .btn {
@@ -285,14 +309,29 @@ button, input, a, h1, h2, h3, h4, p, span, li {
   padding: 14px 28px; font-weight: 600; border-radius: 999px;
   text-decoration: none; transition: transform 0.15s, box-shadow 0.15s;
 }
+
+/* High-contrast Explore button on orange iridescence */
 .btn.primary {
-  background: linear-gradient(135deg, var(--orange), var(--orange-deep));
-  color: #fff; box-shadow: 0 8px 24px rgba(255,107,0,0.35);
+  background: #ffffff !important;
+  color: #1a1a2e !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22) !important;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  font-weight: 700;
 }
-.btn.primary:hover { transform: translateY(-2px); }
+.btn.primary:hover {
+  background: #fff8f0 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28) !important;
+}
 .btn.secondary {
-  background: rgba(255,255,255,0.14); color: #fff;
-  border: 1.5px solid rgba(255,255,255,0.35); backdrop-filter: blur(8px);
+  background: rgba(26, 26, 46, 0.35) !important;
+  color: #fff !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.55) !important;
+  backdrop-filter: blur(10px);
+  font-weight: 600;
+}
+.btn.secondary:hover {
+  background: rgba(26, 26, 46, 0.5) !important;
 }
 
 .marquee-section {
@@ -413,21 +452,49 @@ a.service-card:hover { transform: translateY(-4px); border-color: var(--orange);
   color: var(--orange);
 }
 
-.legal-page {
-  padding: 64px 0 80px;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(12px);
-  border-top: 1px solid var(--border);
-  scroll-margin-top: 80px;
+/* Standalone legal pages */
+.legal-standalone {
+  min-height: 100vh;
+  background: #FFF9F5;
+  color: #1A1A2E;
+  font-family: 'Inter', 'Noto Sans Bengali', system-ui, sans-serif;
 }
-.legal-inner {
-  max-width: 720px;
+.legal-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(26,26,46,0.08);
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
-.legal-inner h2 {
-  font-size: 1.75rem;
+.legal-home {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #1A1A2E;
+  font-weight: 600;
+}
+.legal-home img { border-radius: 8px; }
+.legal-back-link {
+  color: #FF6B00;
+  font-weight: 600;
+  text-decoration: none;
+}
+.legal-page.standalone {
+  padding: 48px 0 80px;
+  background: transparent;
+  border: none;
+}
+.legal-page.standalone h1 {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
   font-weight: 700;
   margin-bottom: 8px;
 }
+.legal-inner { max-width: 720px; }
 .legal-updated {
   color: var(--muted);
   font-size: 0.85rem;
@@ -447,9 +514,7 @@ a.service-card:hover { transform: translateY(-4px); border-color: var(--orange);
   padding-left: 1.25rem;
   margin-bottom: 12px;
 }
-.legal-inner a {
-  color: var(--orange);
-}
+.legal-inner a { color: var(--orange); }
 .legal-back {
   display: inline-block;
   margin-top: 24px;
