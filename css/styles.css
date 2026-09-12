@@ -1,1 +1,2 @@
-/* styles updated - see local file */
+/* Load original styles from known-good commit; extras.css adds map/contact/ribbon/spark */
+@import url("https://cdn.jsdelivr.net/gh/ariX08/biswas-cyber-cafe@f801113aeff2c5a52648ef31d718d51042856e93/css/styles.css");
