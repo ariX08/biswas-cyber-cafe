@@ -1,7 +1,7 @@
 import { useRef, useEffect, useCallback } from 'react';
 
 const ClickSpark = ({
-  sparkColor = '#c31414',
+  sparkColor = '#FF4500',
   sparkSize = 10,
   sparkRadius = 15,
   sparkCount = 8,
