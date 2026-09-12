@@ -118,7 +118,7 @@ function App() {
             <a href="/" className="glass-logo" aria-label="Biswas Cyber Cafe">
               {!logoError ? (
                 <img
-                  src="/assets/logo-icon.svg"
+                  src="/assets/logo.png"
                   alt="Biswas Cyber Cafe"
                   className="glass-logo-img"
                   onError={() => setLogoError(true)}
