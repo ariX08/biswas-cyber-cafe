@@ -91,6 +91,7 @@ function App() {
   const [lang, setLang] = useState(() => localStorage.getItem('bcc-lang') || 'en');
   const [theme, setTheme] = useState(() => localStorage.getItem('bcc-theme') || 'light');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [logoError, setLogoError] = useState(false);
   const i = t[lang] || t.en;
 
   useEffect(() => {
@@ -103,22 +104,37 @@ function App() {
   return (
     <ClickSpark sparkColor="#c31414" sparkSize={12} sparkRadius={18} sparkCount={10} duration={450}>
       <div className={`app ${lang === 'bn' ? 'lang-bn' : ''}`}>
-        <header className="site-header">
-          <div className="container header-inner">
-            <a href="/" className="logo-link">
-              <span className="logo-mark">B</span>
-              <div className="logo-text">
-                <span className="brand-name">{i.brand}</span>
-                <span className="brand-sub">{i.brandSub}</span>
-              </div>
+        <div className="page-bg" aria-hidden="true">
+          <Iridescence
+            color={[0.9372549019607843, 0.5137254901960784, 0.26666666666666666]}
+            mouseReact={false}
+            amplitude={0.1}
+            speed={1.2}
+          />
+        </div>
+
+        <header className="glass-nav-wrap">
+          <div className="glass-nav">
+            <a href="/" className="glass-logo">
+              {!logoError ? (
+                <img
+                  src="/assets/logo.png"
+                  alt=""
+                  className="glass-logo-img"
+                  onError={() => setLogoError(true)}
+                />
+              ) : (
+                <span className="glass-logo-fallback show">B</span>
+              )}
+              <span className="glass-brand">{i.brand} {i.brandSub}</span>
             </a>
-            <nav className="nav">
+            <nav className="glass-links">
               <a href="#services">{i.navServices}</a>
               <a href="#about">{i.navAbout}</a>
               <a href="#location">{i.navLocation}</a>
               <a href="#contact">{i.navContact}</a>
             </nav>
-            <div className="header-actions">
+            <div className="glass-actions">
               <div className="lang-switcher">
                 <button type="button" className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>EN</button>
                 <button type="button" className={lang === 'bn' ? 'active' : ''} onClick={() => setLang('bn')}>বাং</button>
@@ -126,11 +142,14 @@ function App() {
               <button type="button" className="theme-toggle" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} aria-label="Toggle theme">
                 {theme === 'light' ? '🌙' : '☀️'}
               </button>
+              <a className="glass-cta" href="https://wa.me/919123898712" target="_blank" rel="noopener noreferrer">
+                WhatsApp
+              </a>
               <button type="button" className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">☰</button>
             </div>
           </div>
           {menuOpen && (
-            <div className="mobile-nav">
+            <div className="mobile-nav glass-mobile">
               <a href="#services" onClick={() => setMenuOpen(false)}>{i.navServices}</a>
               <a href="#about" onClick={() => setMenuOpen(false)}>{i.navAbout}</a>
               <a href="#location" onClick={() => setMenuOpen(false)}>{i.navLocation}</a>
@@ -140,12 +159,6 @@ function App() {
         </header>
 
         <section className="hero">
-          <Iridescence
-            color={[0.9372549019607843, 0.5137254901960784, 0.26666666666666666]}
-            mouseReact={false}
-            amplitude={0.1}
-            speed={1.2}
-          />
           <div className="hero-content">
             <p className="eyebrow">{i.heroEyebrow}</p>
             <h1>{i.heroTitle}</h1>
